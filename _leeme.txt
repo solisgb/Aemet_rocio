@@ -1,0 +1,13 @@
+Cómo poner operativos los ficheros de la rejilla de 5 km de Aemet (rocio)
+
+En vez de trabajar directamente con los ficheros de texto facilitados por Aemet, una manera más eficiente es pasar los ficheros originales de .parquet y formar bases de datos más pequeñas cuando se trabaja en una zona en concreto. Los pasos a seguir son:
+
+1) Extraer los ficheros en el fichero .tar, por ejemplo con 7z
+   Hay 3 ficheros, uno por variable: pcp, tmin y tmax
+   En cada .tar hay a su vez otros 3 ficheros: un leeme.txt, un fichero maestro.txt con las coordenadas de los puntos del grid y el fichero específico de datos de la variable en cada punto del grid
+
+2) Lo primero que hago es pasar los ficheros .gz a ficheros parquet. Para esta tarea se utiliza el notebook Aemet_grid5k_to_parquet.ipynb
+
+3) Para trabajar en una zona concreta, presenta muchas ventajas extraer los puntos de la zona de estudio y almacenarlos es una base de datos. En el notebook Aemet_create_duckdb_db.ipynb se pasan los datos climáticos a una base de datos duckdb para un conjunto de puntos seleccionados. No obstante, para trabajar con pocos puntos puedes extraerlos directamente de los fichros parquet sin pasarlos a una base de datos
+
+
